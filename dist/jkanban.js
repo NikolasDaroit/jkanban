@@ -178,7 +178,7 @@ var dragula = require("dragula");
       );
       var nodeItem = document.createElement("div");
       nodeItem.classList.add("kanban-item");
-      console.log(element);
+      // console.log(element);
       if (typeof element.id !== "undefined" && element.id !== "") {
         nodeItem.setAttribute("data-eid", element.id);
       }
