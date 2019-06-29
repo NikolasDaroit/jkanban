@@ -119,7 +119,9 @@ var dragula = require("dragula");
                   boardJSON.dragTo.indexOf(board.id) === -1 &&
                   board.id !== source.parentNode.dataset.id
                 ) {
-                  self.findBoard(board.id).classList.add("disabled-board");
+                  if (boardJSON.dragTo.indexOf('__all__') === -1) {
+                    self.findBoard(board.id).classList.add("disabled-board");
+                  }
                 }
               });
             }
@@ -142,7 +144,9 @@ var dragula = require("dragula");
                 boardJSON.dragTo.indexOf(target.parentNode.dataset.id) === -1 &&
                 target.parentNode.dataset.id !== source.parentNode.dataset.id
               ) {
-                self.drake.cancel(true);
+                if (boardJSON.dragTo.indexOf('__all__') === -1) {
+                  self.drake.cancel(true);
+                }
               }
             }
             if (el !== null) {
@@ -383,12 +387,12 @@ var dragula = require("dragula");
       }
       
       // remove thboard in options.boards
-	    for(var i = 0; i < self.options.boards.length; i++) {
-		    if(self.options.boards[i].id === board) {
-			    self.options.boards.splice(i, 1);
-			    break;
-		    }
-	    }
+      for(var i = 0; i < self.options.boards.length; i++) {
+        if(self.options.boards[i].id === board) {
+          self.options.boards.splice(i, 1);
+          break;
+        }
+      }
       
       return self;
     };
